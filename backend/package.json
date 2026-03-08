@@ -1,15 +1,29 @@
 {
-  "name": "backend",
+  "name": "testejitterbit",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Api Simple de pedidos para o desafio da Jitterbit",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "prisma:generate": "prisma generate",
+    "db:studio": "npx prisma studio"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jeffley Garçon",
   "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prisma": "^6.1.0"
+  },
   "dependencies": {
-    "express": "^5.2.1"
+    "@prisma/client": "7.4.2",
+    "dotenv": "^17.3.1",
+    "joi": "^18.0.2",
+    "jsonwebtoken": "^9.0.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.19.0"
   }
 }
