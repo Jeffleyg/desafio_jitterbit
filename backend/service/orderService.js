@@ -47,6 +47,59 @@ class OrderService {
             throw error;
         }
     }
+    async encontrarAllOrders() {
+        try {
+            const pedidos = await prisma.order.findMany({ include: { items: true } });
+            logger.info(`[Service] Listagem de pedidos realizada. Total: ${pedidos.length}`);
+            return pedidos;
+        } catch (error) {
+            logger.error(`[Service] Erro ao buscar todos os pedidos: ${error.message}`);
+            throw error;
+        }
+    }
+
+    async encontrarOrderPorId(id) {
+        try {
+            const order = await prisma.order.findUnique({
+                where: { orderId: id },
+                include: { items: true }
+            });
+            if (!order) {
+                logger.warn(`[Service] Tentativa de busca: Pedido ${id} não existe.`);
+                throw new Error("ORDER_NOT_FOUND");
+            }
+            return order;
+        } catch (error) {
+            logger.error(`[Service] Erro na busca por ID ${id}: ${error.message}`);
+            throw error;
+        }
+    }
+
+    async atualizarOrder(id, data) {
+        try {
+            const novoValor = data.valorTotal ?? data.value;
+            const pedido = await prisma.order.update({
+                where: { orderId: id },
+                data: { value: Number(novoValor) }
+            });
+            logger.info(`[Service] Pedido ${id} atualizado com sucesso.`);
+            return pedido;
+        } catch (error) {
+            logger.error(`[Service] Erro ao atualizar pedido ${id}: ${error.message}`);
+            throw error;
+        }
+    }
+
+    async deleteOrder(id) {
+        try {
+            await prisma.order.delete({ where: { orderId: id } });
+            logger.info(`[Service] Pedido ${id} removido do sistema.`);
+            return true;
+        } catch (error) {
+            logger.error(`[Service] Falha na exclusão do pedido ${id}: ${error.message}`);
+            throw error;
+        }
+    }
 
 }
 
