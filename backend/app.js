@@ -13,7 +13,7 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Rotas
-app.use('/api/orders', orderRoutes);
+app.use('/orders', orderRoutes);
 
 // Middleware global de tratamento de erros
 app.use((err, req, res, next) => {
