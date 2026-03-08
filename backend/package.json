@@ -14,14 +14,14 @@
   "author": "Jeffley Garçon",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.14",
-    "prisma": "^6.1.0"
+    "nodemon": "^3.1.14"
   },
   "dependencies": {
-    "@prisma/client": "7.4.2",
+    "@prisma/client": "^5.10.0",
     "dotenv": "^17.3.1",
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
+    "prisma": "^5.10.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.19.0"
